@@ -10,6 +10,11 @@ class Notification extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class)->withDefault();
+        // Provide default values for all the user attributes your views use
+        return $this->belongsTo(User::class)->withDefault([
+            'first_name' => 'Deleted',
+            'last_name' => 'User',
+            'full_name' => 'Deleted User',
+        ]);
     }
 }
