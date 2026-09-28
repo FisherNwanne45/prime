@@ -13,9 +13,9 @@
             <div class="head">{{ __('All Wallets in') }} {{ $currency }}</div>
             <div class="one">
                 <div class="balance">
-
-                    <span class="symbol">{{ $currencySymbol }}</span>{{ Str::before($user->balance, '.') }}<span
-                        class="after-dot">.{{ strpos($user->balance, '.') ? Str::after($user->balance, '.') : '00' }} </span>
+                    @php $balanceFormatted = formatAmount($user->balance); @endphp
+                    <span class="symbol">{{ $currencySymbol }}</span>{{ Str::before($balanceFormatted, '.') }}<span
+                        class="after-dot">.{{ Str::after($balanceFormatted, '.') }} </span>
                 </div>
                 <div class="wallet">{{ __('Main Wallet') }}</div>
             </div>
@@ -23,13 +23,14 @@
 
             <div class="one p-wal">
                 <div class="balance">
-                    <span class="symbol">{{ $currencySymbol }}</span>{{ $user->profit_balance }}<span
-                        class="after-dot">.{{ strpos($user->profit_balance, '.') ? Str::after($user->profit_balance, '.') : '00' }} </span>
+                    @php $profitFormatted = formatAmount($user->profit_balance); @endphp
+                    <span class="symbol">{{ $currencySymbol }}</span>{{ Str::before($profitFormatted, '.') }}<span
+                        class="after-dot">.{{ Str::after($profitFormatted, '.') }} </span>
                 </div>
                 <div class="wallet">{{ __('Profit Wallet') }}</div>
             </div>
             <div class="info">
-                <i icon-name="info"></i>{{ __('You Earned') }} {{ $dataCount['profit_last_7_days'] }} {{ $currency }} {{ __('This Week') }}
+                <i icon-name="info"></i>{{ __('You Earned') }} {{ formatAmount($dataCount['profit_last_7_days']) }} {{ $currency }} {{ __('This Week') }}
             </div>
         </div>
     </div>

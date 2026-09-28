@@ -36,8 +36,8 @@
                                 <td>
                                     <strong>{{ safe($user->email) }}</strong>
                                 </td>
-                                <td><strong>{{ $currencySymbol . $user->balance }}</strong></td>
-                                <td><strong>{{ $currencySymbol . $user->total_profit }}</strong></td>
+                                <td><strong>{{ $currencySymbol . formatAmount($user->balance) }}</strong></td>
+                                <td><strong>{{ $currencySymbol . formatAmount($user->total_profit) }}</strong></td>
                                 <td>
                                     @if($user->kyc == 1)
                                         <div class="site-badge success">{{ __('Verified') }}</div>

@@ -41,7 +41,7 @@
                                     <tr>
                                         <td><strong>{{ __('Amount:') }}</strong></td>
                                         <td id="amount">
-                                            {{ $schema->type == 'range' ? 'Minimum ' . $schema->min_amount .' '.$currency. ' - ' . 'Maximum ' . $schema->max_amount.' '.$currency :  $schema->fixed_amount.' '.$currency }}
+                                            {{ $schema->type == 'range' ? 'Minimum ' . formatAmount($schema->min_amount) .' '.$currency. ' - ' . 'Maximum ' . formatAmount($schema->max_amount).' '.$currency :  formatAmount($schema->fixed_amount).' '.$currency }}
                                         </td>
                                     </tr>
 
@@ -67,11 +67,11 @@
                                                 <select class="site-nice-select" aria-label="Default select example"
                                                         name="wallet" required id="selectWallet">
                                                     <option
-                                                        value="main">{{ __('Main Wallet ( ') . $user->balance.' '. $currency }}
+                                                        value="main">{{ __('Main Wallet ( ') . formatAmount($user->balance).' '. $currency }}
                                                         )
                                                     </option>
                                                     <option
-                                                        value="profit">{{ __('Profit Wallet ( ') . $user->profit_balance.' '. $currency }}
+                                                        value="profit">{{ __('Profit Wallet ( ') . formatAmount($user->profit_balance).' '. $currency }}
                                                         )
                                                     </option>
                                                     <option value="gateway">{{ __('Direct Gateway') }}</option>
@@ -93,7 +93,7 @@
 
                                     <tr>
                                         <td><strong>{{ __('Return of Interest:') }}</strong></td>
-                                        <td id="return-interest">{{ ($schema->interest_type == 'percentage' ? $schema->return_interest.'%' : $schema->return_interest.' '.$currency ) .' ('.$schema->schedule->name .')' }}</td>
+                                        <td id="return-interest">{{ ($schema->interest_type == 'percentage' ? $schema->return_interest.'%' : formatAmount($schema->return_interest).' '.$currency ) .' ('.$schema->schedule->name .')' }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>{{ __('Number of Period:') }}</strong></td>
@@ -106,7 +106,7 @@
                                     <tr>
                                         <td><strong>{{ __('Total Investment Amount:') }}</strong></td>
                                         <td><span
-                                                id="total-amount"> {{ $schema->fixed_amount ?? '' }}</span> {{ $currency }}
+                                                id="total-amount"> {{ $schema->fixed_amount ? formatAmount($schema->fixed_amount) : '' }}</span> {{ $currency }}
                                         </td>
                                     </tr>
                                     </tbody>

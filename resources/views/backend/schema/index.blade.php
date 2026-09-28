@@ -49,7 +49,7 @@
                                             </td>
                                             <td><strong>{{$schema->name}}</strong></td>
                                             <td>
-                                                <strong>{{ $schema->type == 'range'? $schema->min_amount.' '.$currency.'-'.$schema->max_amount.' '.$currency:$schema->fixed_amount.' '.$currency }}</strong>
+                                                <strong>{{ $schema->type == 'range'? formatAmount($schema->min_amount).' '.$currency.'-'.formatAmount($schema->max_amount).' '.$currency:formatAmount($schema->fixed_amount).' '.$currency }}</strong>
                                             </td>
                                             <td>
                                                 <div @class([

@@ -11,11 +11,11 @@
                     {{ __("It's Me") }}( {{ $levelUser->full_name }} )
                 @else
                     <b>{{ $levelUser->full_name }} <br> @if(setting('deposit_level'))
-                            {{ __('Deposit') }} {{ $currencySymbol.$levelUser->totalDeposit() }},
+                            {{ __('Deposit') }} {{ $currencySymbol.formatAmount($levelUser->totalDeposit()) }},
                         @endif @if(setting('investment_level'))
-                            {{ __('Invest') }} {{ $currencySymbol.$levelUser->totalInvestment() }},
+                            {{ __('Invest') }} {{ $currencySymbol.formatAmount($levelUser->totalInvestment()) }},
                         @endif @if(setting('profit_level'))
-                            {{ __('ROI Profit') }} {{ $currencySymbol.$levelUser->totalRoiProfit() }}
+                            {{ __('ROI Profit') }} {{ $currencySymbol.formatAmount($levelUser->totalRoiProfit()) }}
                         @endif</b>
                 @endif
 

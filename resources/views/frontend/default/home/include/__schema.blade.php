@@ -30,7 +30,7 @@
                         <p>{{$schema->schedule->name . ' '. ($schema->interest_type == 'percentage' ? $schema->return_interest.'%' : $currencySymbol.$schema->return_interest ) }}</p>
                         <ul>
                             <li>{{ __('Investment') }} <span class="special">
-                                                                {{ $schema->type == 'range' ? $currencySymbol . $schema->min_amount . '-' . $currencySymbol . $schema->max_amount : $currencySymbol . $schema->fixed_amount }}
+                                                                {{ $schema->type == 'range' ? $currencySymbol . formatAmount($schema->min_amount) . '-' . $currencySymbol . formatAmount($schema->max_amount) : $currencySymbol . formatAmount($schema->fixed_amount) }}
                                                             </span></li>
                             <li>{{ __('Capital Back') }} <span>{{ $schema->capital_back ? __('Yes') : __('No') }}</span></li>
                             <li>{{ __('Return Type') }} <span>{{ __(ucwords($schema->return_type)) }}</span></li>

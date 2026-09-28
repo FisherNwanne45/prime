@@ -58,9 +58,9 @@
                                             </td>
                                             <td><strong>{{ $raw->tnx }}</strong></td>
                                             <td><strong
-                                                    class="green-color">+{{$raw->amount.' '.$currency }}</strong>
+                                                    class="green-color">+{{ formatAmount($raw->amount).' '.$currency }}</strong>
                                             </td>
-                                            <td><strong class="red-color">-{{ $raw->charge }} {{ $currency }}</strong>
+                                            <td><strong class="red-color">-{{ formatAmount($raw->charge).' '.$currency }}</strong>
                                             <td>
                                                 @switch($raw->status->value)
                                                     @case('pending')

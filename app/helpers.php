@@ -62,6 +62,22 @@ if (! function_exists('oldSetting')) {
     }
 }
 
+if (! function_exists('formatAmount')) {
+
+    function formatAmount($amount, int $decimals = 2): string
+    {
+        if (is_null($amount) || $amount === '') {
+            $amount = 0;
+        }
+
+        if (! is_numeric($amount)) {
+            $amount = str_replace([',', ' '], ['', ''], $amount);
+        }
+
+        return number_format((float) $amount, $decimals, '.', ',');
+    }
+}
+
 if (! function_exists('settingValue')) {
 
     function settingValue($field)

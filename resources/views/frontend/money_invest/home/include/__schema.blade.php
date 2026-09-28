@@ -32,7 +32,7 @@
                     </div>
                     <div class="content">
                         <h3>{{$schema->name}}</h3>
-                        <h4>{{ $schema->type == 'range' ? $currencySymbol . $schema->min_amount . ' - ' . $currencySymbol . $schema->max_amount : $currencySymbol . $schema->fixed_amount }}</h4>
+                        <h4>{{ $schema->type == 'range' ? $currencySymbol . formatAmount($schema->min_amount) . ' - ' . $currencySymbol . formatAmount($schema->max_amount) : $currencySymbol . formatAmount($schema->fixed_amount) }}</h4>
                         <ul>
                             <li><i icon-name="check-check"></i>{{ $schema->schedule->name.' '. __('Returns') }}<span>{{ $schema->interest_type == 'percentage' ? $schema->return_interest.'%' : $currencySymbol.$schema->return_interest  }}</span></li>
                             <li><i icon-name="check-check"></i>{{ __('Capital Return') }}<span>{{ $schema->capital_back ? __('Yes') : __('No') }}</span></li>

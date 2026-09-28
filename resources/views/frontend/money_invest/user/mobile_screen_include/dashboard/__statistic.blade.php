@@ -18,7 +18,7 @@
                             <div class="icon"><i icon-name="download"></i></div>
                             <div class="content">
                                 <div class="amount">{{ $currencySymbol }}<span
-                                        class="count">{{ $dataCount['total_deposit'] }}</span>
+                                        class="count">{{ formatAmount($dataCount['total_deposit']) }}</span>
                                 </div>
                                 <div class="name">{{ __('Total Deposit') }}</div>
                             </div>
@@ -29,7 +29,7 @@
                             <div class="icon"><i icon-name="box"></i></div>
                             <div class="content">
                                 <div class="amount">{{ $currencySymbol }}<span
-                                        class="count">{{ $dataCount['total_investment'] }}</span>
+                                        class="count">{{ formatAmount($dataCount['total_investment']) }}</span>
                                 </div>
                                 <div class="name">{{ __('Total Investment') }}</div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="icon"><i icon-name="credit-card"></i></div>
                                 <div class="content">
                                     <div class="amount"> {{ $currencySymbol }}<span
-                                            class="count">{{ $dataCount['total_profit'] }}</span>
+                                            class="count">{{ formatAmount($dataCount['total_profit']) }}</span>
                                     </div>
                                     <div class="name">{{ __('Total Profit') }}</div>
                                 </div>
@@ -54,7 +54,7 @@
                                 <div class="icon"><i icon-name="log-in"></i></div>
                                 <div class="content">
                                     <div class="amount">{{ $currencySymbol }}<span
-                                            class="count">{{ $dataCount['total_transfer'] }}</span>
+                                            class="count">{{ formatAmount($dataCount['total_transfer']) }}</span>
                                     </div>
                                     <div class="name">{{ __('Total Transfer') }}</div>
                                 </div>
@@ -65,7 +65,7 @@
                                 <div class="icon"><i icon-name="send"></i></div>
                                 <div class="content">
                                     <div class="amount"> {{ $currencySymbol }}<span
-                                            class="count">{{ $dataCount['total_withdraw'] }}</span>
+                                            class="count">{{ formatAmount($dataCount['total_withdraw']) }}</span>
                                     </div>
                                     <div class="name">{{ __('Total Withdraw') }}</div>
                                 </div>
@@ -76,7 +76,7 @@
                                 <div class="icon"><i icon-name="users-2"></i></div>
                                 <div class="content">
                                     <div class="amount"> {{ $currencySymbol }}<span
-                                            class="count">{{ $dataCount['total_referral_profit'] }}</span>
+                                            class="count">{{ formatAmount($dataCount['total_referral_profit']) }}</span>
                                     </div>
                                     <div class="name">{{ __('Referral Bonus') }}</div>
                                 </div>
@@ -86,7 +86,7 @@
                             <div class="single-card">
                                 <div class="icon"><i icon-name="anchor"></i></div>
                                 <div class="content">
-                                    <div class="amount">$<span class="count">{{ $dataCount['deposit_bonus'] }}</span>
+                                    <div class="amount">$<span class="count">{{ formatAmount($dataCount['deposit_bonus']) }}</span>
                                     </div>
                                     <div class="name">{{ __('Deposit Bonus') }}</div>
                                 </div>
@@ -97,7 +97,7 @@
                                 <div class="icon"><i icon-name="archive"></i></div>
                                 <div class="content">
                                     <div class="amount">{{ $currencySymbol }}<span
-                                            class="count">{{ $dataCount['investment_bonus'] }}</span>
+                                            class="count">{{ formatAmount($dataCount['investment_bonus']) }}</span>
                                     </div>
                                     <div class="name"> {{ __('Investment Bonus') }}</div>
                                 </div>

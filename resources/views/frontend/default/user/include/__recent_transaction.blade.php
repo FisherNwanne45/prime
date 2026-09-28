@@ -59,9 +59,9 @@
                                 </td>
 
                                 <td><strong
-                                        class="{{ txn_type($transaction->type->value,['green-color','red-color']) }}">{{ txn_type($transaction->type->value,['+','-']) .$transaction->amount.' '.$currency }}</strong>
+                                        class="{{ txn_type($transaction->type->value,['green-color','red-color']) }}">{{ txn_type($transaction->type->value,['+','-']) . formatAmount($transaction->amount).' '.$currency }}</strong>
                                 </td>
-                                <td><strong>{{ $transaction->charge.' '. $currency }}</strong></td>
+                                <td><strong>{{ formatAmount($transaction->charge).' '. $currency }}</strong></td>
                                 <td>
 
 

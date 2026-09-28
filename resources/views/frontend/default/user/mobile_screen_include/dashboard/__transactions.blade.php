@@ -14,8 +14,8 @@
                 </div>
                 <div class="transaction-right">
                     <div class="transaction-amount {{ txn_type($transaction->type->value,['add','sub']) }}">
-                        {{txn_type($transaction->type->value,['+','-']).$transaction->amount .' '.$currency}}</div>
-                    <div class="transaction-fee sub">-{{  $transaction->charge.' '. $currency .' '.__('Fee') }} </div>
+                        {{txn_type($transaction->type->value,['+','-']).formatAmount($transaction->amount) .' '.$currency}}</div>
+                    <div class="transaction-fee sub">-{{  formatAmount($transaction->charge).' '. $currency .' '.__('Fee') }} </div>
                     <div class="transaction-gateway">{{ $transaction->method }}</div>
 
 

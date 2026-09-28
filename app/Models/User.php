@@ -97,12 +97,14 @@ class User extends Authenticatable implements CanUseTickets, MustVerifyEmail
 
     public function getKycTypeAttribute(): string
     {
-        return json_decode($this->attributes['kyc_credential'], true)['kyc_type_of_name'] ?? '';
+        $credentials = json_decode($this->attributes['kyc_credential'] ?? '', true);
+        return is_array($credentials) ? ($credentials['kyc_type_of_name'] ?? '') : '';
     }
 
     public function getKycTimeAttribute(): string
     {
-        return json_decode($this->attributes['kyc_credential'], true)['kyc_time_of_time'] ?? '';
+        $credentials = json_decode($this->attributes['kyc_credential'] ?? '', true);
+        return is_array($credentials) ? ($credentials['kyc_time_of_time'] ?? '') : '';
     }
 
     public function getTotalProfitAttribute(): string
@@ -114,6 +116,7 @@ class User extends Authenticatable implements CanUseTickets, MustVerifyEmail
     {
         return $this->totalDeposit();
     }
+
     public function getTotalInvestAttribute(): string
     {
         return $this->totalInvestment();
@@ -121,7 +124,6 @@ class User extends Authenticatable implements CanUseTickets, MustVerifyEmail
 
     public function totalProfit($days = null)
     {
-
         $sum = $this->transaction()->where('status', TxnStatus::Success)->where(function ($query) {
             $query->where('type', TxnType::Referral)
                 ->orWhere('type', TxnType::SignupBonus)
@@ -129,7 +131,7 @@ class User extends Authenticatable implements CanUseTickets, MustVerifyEmail
                 ->orWhere('type', TxnType::Bonus);
         });
 
-        if (null != $days) {
+        if (null !== $days) {
             $sum->where('created_at', '>=', Carbon::now()->subDays((int) $days));
         }
         $sum = $sum->sum('amount');
@@ -242,15 +244,17 @@ class User extends Authenticatable implements CanUseTickets, MustVerifyEmail
         return $this->hasMany(Ticket::class);
     }
 
-    public function rankAchieved()
+    public function rankAchieved(): int
     {
-        return count(json_decode($this->rankings, true));
+        $rankings = json_decode($this->rankings ?? '', true);
+
+        return is_array($rankings) ? count($rankings) : 0;
     }
 
     protected function google2faSecret(): Attribute
     {
         return new Attribute(
-            get: fn($value) => $value != null ? decrypt($value) : $value,
+            get: fn($value) => $value !== null ? decrypt($value) : $value,
             set: fn($value) => encrypt($value),
         );
     }

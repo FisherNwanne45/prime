@@ -79,9 +79,9 @@
                                                     class="site-badge primary-bg">{{ str_replace('_',' ',$transaction->type->value) }}</div>
                                             </td>
                                             <td><strong
-                                                    class="{{$transaction->type !== 'subtract' && $transaction->type !== 'investment' && $transaction->type !== 'send_money' && $transaction->type !== 'withdraw' ? 'green-color': 'red-color'}}">{{ ($transaction->type !== 'subtract' && $transaction->type !== 'investment' && $transaction->type !== 'send_money' && $transaction->type !== 'withdraw' ? '+': '-' ).$transaction->amount.' '.$transaction->currency }}</strong>
+                                                    class="{{$transaction->type !== 'subtract' && $transaction->type !== 'investment' && $transaction->type !== 'send_money' && $transaction->type !== 'withdraw' ? 'green-color': 'red-color'}}">{{ ($transaction->type !== 'subtract' && $transaction->type !== 'investment' && $transaction->type !== 'send_money' && $transaction->type !== 'withdraw' ? '+': '-' ).formatAmount($transaction->amount).' '.$transaction->currency }}</strong>
                                             </td>
-                                            <td><strong>{{ $transaction->charge }} {{ $currency }}</strong></td>
+                                            <td><strong>{{ formatAmount($transaction->charge) }} {{ $currency }}</strong></td>
                                             <td>
                                                 @switch($transaction->status->value)
                                                     @case('pending')
@@ -139,9 +139,9 @@
                                 <div class="transaction-right">
                                     <div
                                         class="transaction-amount {{ txn_type($transaction->type->value,['add','sub']) }}">
-                                        {{txn_type($transaction->type->value,['+','-']).$transaction->amount .' '.$currency}}</div>
+                                        {{txn_type($transaction->type->value,['+','-']).formatAmount($transaction->amount) .' '.$currency}}</div>
                                     <div class="transaction-fee sub">
-                                        -{{  $transaction->charge.' '. $currency .' '.__('Fee') }} </div>
+                                        -{{  formatAmount($transaction->charge).' '. $currency .' '.__('Fee') }} </div>
                                     <div class="transaction-gateway">{{ $transaction->method }}</div>
 
 

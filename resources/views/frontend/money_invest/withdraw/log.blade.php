@@ -57,9 +57,9 @@
                                                 </div>
                                             </td>
                                             <td><strong>{{ $raw->tnx }}</strong></td>
-                                            <td><strong class="red-color">-{{$raw->amount.' '.$currency }}</strong>
+                                            <td><strong class="red-color">-{{ formatAmount($raw->amount).' '.$currency }}</strong>
                                             </td>
-                                            <td><strong class="red-color">-{{ $raw->charge }} {{ $currency }}</strong>
+                                            <td><strong class="red-color">-{{ formatAmount($raw->charge).' '.$currency }}</strong>
                                             </td>
                                             <td>
                                                 @switch($raw->status->value)
@@ -118,9 +118,9 @@
                                 <div class="transaction-right">
                                     <div
                                         class="transaction-amount sub">
-                                        - {{$raw->amount .' '.$currency}}</div>
+                                        - {{ formatAmount($raw->amount).' '.$currency }}</div>
                                     <div class="transaction-fee sub">
-                                        -{{  $raw->charge.' '. $currency .' '.__('Fee') }} </div>
+                                        -{{  formatAmount($raw->charge).' '. $currency .' '.__('Fee') }} </div>
                                     <div class="transaction-gateway">{{ $raw->method }}</div>
 
                                     @if($raw->status->value == App\Enums\TxnStatus::Pending->value)

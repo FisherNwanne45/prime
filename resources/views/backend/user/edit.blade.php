@@ -77,7 +77,7 @@
                                             <div class="wallet-info">
                                                 <div class="wallet-id">{{ setting('site_currency','global') }}</div>
                                                 <div
-                                                    class="balance">{{ setting('currency_symbol','global') . $user->balance }}</div>
+                                                    class="balance">{{ setting('currency_symbol','global') . formatAmount($user->balance) }}</div>
                                             </div>
                                         </div>
                                         <div class="admin-user-balance-card">
@@ -94,7 +94,7 @@
                                             <div class="wallet-info">
                                                 <div class="wallet-id">{{ setting('site_currency','global') }}</div>
                                                 <div
-                                                    class="balance">{{ setting('currency_symbol','global') . $user->profit_balance }}</div>
+                                                    class="balance">{{ setting('currency_symbol','global') . formatAmount($user->profit_balance) }}</div>
                                             </div>
                                         </div>
                                     </div>

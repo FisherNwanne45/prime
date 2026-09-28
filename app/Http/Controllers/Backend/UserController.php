@@ -75,7 +75,7 @@ class UserController extends Controller
                     return safe($request->username);
                 })
                 ->editColumn('total_profit', function ($request) {
-                    return $request->total_profit . ' ' . setting('site_currency');
+                    return formatAmount($request->total_profit) . ' ' . setting('site_currency');
                 })
                 ->addColumn('action', 'backend.user.include.__action')
                 ->rawColumns(['avatar', 'kyc', 'status', 'action'])
@@ -86,11 +86,8 @@ class UserController extends Controller
     }
 
     /**
-     * @return Application|Factory|View|JsonResponse
-     *
-     * @throws Exception
+     * @return RedirectResponse
      */
-
     public function store(Request $request)
     {
         $request->validate([
@@ -182,10 +179,10 @@ class UserController extends Controller
                 ->addIndexColumn()
                 ->editColumn('avatar', 'backend.user.include.__avatar')
                 ->editColumn('balance', function ($request) {
-                    return $request->balance . ' ' . setting('site_currency');
+                    return formatAmount($request->balance) . ' ' . setting('site_currency');
                 })
                 ->editColumn('total_profit', function ($request) {
-                    return $request->total_profit . ' ' . setting('site_currency');
+                    return formatAmount($request->total_profit) . ' ' . setting('site_currency');
                 })
                 ->editColumn('email', function ($request) {
                     return safe($request->email);
@@ -216,13 +213,13 @@ class UserController extends Controller
                 ->editColumn('kyc', 'backend.user.include.__kyc')
                 ->editColumn('status', 'backend.user.include.__status')
                 ->editColumn('balance', function ($request) {
-                    return $request->balance . ' ' . setting('site_currency');
+                    return formatAmount($request->balance) . ' ' . setting('site_currency');
                 })
                 ->editColumn('email', function ($request) {
                     return safe($request->email);
                 })
                 ->editColumn('total_profit', function ($request) {
-                    return $request->total_profit . ' ' . setting('site_currency');
+                    return formatAmount($request->total_profit) . ' ' . setting('site_currency');
                 })
                 ->addColumn('action', 'backend.user.include.__action')
                 ->rawColumns(['avatar', 'kyc', 'status', 'action'])
@@ -360,7 +357,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'amount' => 'required',
-            'type' => 'required',
+            'type' => 'required|in:add,subtract',
         ]);
 
         if ($validator->fails()) {
@@ -405,6 +402,10 @@ class UserController extends Controller
                 Txn::new($amount, 0, $amount, 'system', 'Money subtract in ' . ucwords($wallet) . ' Wallet from System', TxnType::Subtract, TxnStatus::Success, null, null, $id, $adminUser->id, 'Admin');
                 $status = 'success';
                 $message = __('Account Balance Updated');
+            } else {
+                notify()->error(__('Invalid balance update type'), 'Error');
+
+                return redirect()->back();
             }
 
             notify()->success($message, $status);

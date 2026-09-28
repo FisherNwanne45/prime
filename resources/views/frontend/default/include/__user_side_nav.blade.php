@@ -7,11 +7,11 @@
             </div>
             <div class="wallet-info">
                 <div class="wallet-id"><i icon-name="wallet"></i>{{ __('Main Wallet') }}</div>
-                <div class="balance">{{ setting('currency_symbol','global').$user->balance }}</div>
+                <div class="balance">{{ setting('currency_symbol','global') . formatAmount($user->balance) }}</div>
             </div>
             <div class="wallet-info">
                 <div class="wallet-id"><i icon-name="landmark"></i>{{ __('Profit Wallet') }}</div>
-                <div class="balance">{{ setting('currency_symbol','global').$user->profit_balance }}</div>
+                <div class="balance">{{ setting('currency_symbol','global') . formatAmount($user->profit_balance) }}</div>
             </div>
         </div>
         <div class="actions">
